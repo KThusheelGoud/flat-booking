@@ -77,7 +77,11 @@ flat-booking/
 
 ## 📸 Screenshots (Optional)
 
-_Add screenshots of apartments page, booking form, and PDF receipt here._
+![apartments](screenshots/apartments.png)
+![youtube-descript](screenshots/description.png)
+![form](screenshots/form.png)
+![pdf](screenshots/pdf.png)
+![success-message](screenshots/success.png)
 
 ---
 
