@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apartments - Sunrise Avenue</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="flat.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">Sunrise Avenue</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="apartments.html">Apartments</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Apartments Section -->
+  <div class="black">
+    <h1 class="heading1">Our Apartments</h1>
+
+    <!-- Search & Filters -->
+    <div class="container mb-4">
+      <div class="row">
+        <div class="col-md-4">
+          <input type="text" id="searchBar" class="form-control" placeholder="Search by name or location...">
+        </div>
+        <div class="col-md-4">
+          <select id="filterSize" class="form-control">
+            <option value="">Filter by Size</option>
+            <option value="2BHK">2BHK</option>
+            <option value="3BHK">3BHK</option>
+            <option value="4BHK">4BHK</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <select id="filterPrice" class="form-control">
+            <option value="">Filter by Price</option>
+            <option value="8000000">Below ₹80L</option>
+            <option value="9000000">Below ₹90L</option>
+            <option value="10000000">Below ₹1Cr</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Apartment Cards -->
+    <div id="apartmentsList" class="row">
+      <!-- Happy Homes -->
+      <div class="col-md-4 mb-4 apartment-card" data-name="Happy Homes" data-size="2BHK" data-price="8000000" data-location="Indore">
+        <div class="card1">
+          <img src="https://www.gbdarchitects.com/wp-content/uploads/2013/09/Kiln-Apartments-1-2500x1406.jpg" class="image" alt="Happy Homes" />
+          <h1 class="head">Happy Homes</h1>
+          <p class="paragraph1">Comfort and style with luxury handmade furniture.</p>
+          <a href="booking.html?flat=Happy%20Homes" class="button">Book Now</a>
+        </div>
+      </div>
+
+      <!-- Elite Homes -->
+      <div class="col-md-4 mb-4 apartment-card" data-name="Elite Homes" data-size="3BHK" data-price="9000000" data-location="Indore">
+        <div class="card1">
+          <img src="https://media.bizj.us/view/img/4641221/memorial-green-rendering*1200xx1509-849-246-0.jpg" class="image" alt="Elite Homes" />
+          <h1 class="head">Elite Homes</h1>
+          <p class="paragraph1">Minimalist design, fully furnished, 1200 sq.ft.</p>
+          <a href="booking.html?flat=Elite%20Homes" class="button">Book Now</a>
+        </div>
+      </div>
+
+      <!-- Glass House -->
+      <div class="col-md-4 mb-4 apartment-card" data-name="Glass House" data-size="4BHK" data-price="10000000" data-location="Indore">
+        <div class="card1">
+          <img src="https://zumpermedia.s3.amazonaws.com/blog/wp-content/uploads/2022/02/10162607/mixed-use-apartments-1.jpg" class="image" alt="Glass House" />
+          <h1 class="head">The Glass House</h1>
+          <p class="paragraph1">Contemporary vibrant home, 3600 sq.ft.</p>
+          <a href="booking.html?flat=Glass%20House" class="button">Book Now</a>
+        </div>
+      </div>
+
+      <!-- Sunrise Villas -->
+      <div class="col-md-4 mb-4 apartment-card" data-name="Sunrise Villas" data-size="4BHK" data-price="12000000" data-location="Indore">
+        <div class="card1">
+          <img src="https://cdn.fantasiavillas.com/media/2021/03/51_VillaSunrise-min.jpg" class="image" alt="Sunrise Villas" />
+          <h1 class="head">Sunrise Villas</h1>
+          <p class="paragraph1">Luxury villas with private garden and pool.</p>
+          <a href="booking.html?flat=Sunrise%20Villas" class="button">Book Now</a>
+        </div>
+      </div>
+
+      <!-- Lakeview Residency -->
+      <div class="col-md-4 mb-4 apartment-card" data-name="Lakeview Residency" data-size="2BHK" data-price="7500000" data-location="Indore">
+        <div class="card1">
+          <img src="https://housing-images.n7net.in/4f2250e8/9a3000e8da9837317e91e4ced9d6e5ad/v0/medium/sri_fortune_one-banjara_hills-hyderabad-sri_sreenivasa_infra.jpeg" class="image" alt="Lakeview Residency" />
+          <h1 class="head">Lakeview Residency</h1>
+          <p class="paragraph1">Scenic lake view apartments with modern amenities.</p>
+          <a href="booking.html?flat=Lakeview%20Residency" class="button">Book Now</a>
+        </div>
+      </div>
+
+      <!-- Royal Heights -->
+      <div class="col-md-4 mb-4 apartment-card" data-name="Royal Heights" data-size="3BHK" data-price="15000000" data-location="Indore">
+        <div class="card1">
+          <img src="https://img.poehalisnami.ua/static/hotels/greciya/iraklion-o-krit/h10416/orig/booking10416_110416_637378704809747158.jpg" class="image" alt="Royal Heights" />
+          <h1 class="head">Royal Heights</h1>
+          <p class="paragraph1">Premium apartments with rooftop lounge and gym.</p>
+          <a href="booking.html?flat=Royal%20Heights" class="button">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer bg-dark text-light py-4 mt-5">
+    <div class="container text-center">
+      <p>&copy; 2026 Sunrise Avenue. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="flat.js"></script>
+</body>
+</html>

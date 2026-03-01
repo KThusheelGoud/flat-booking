@@ -1,189 +1,197 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Roboto&display=swap');
+
 body {
-    animation: fadeIn 0.5s ease-in-out;
+  font-family: "Roboto", sans-serif;
+  background-color: #121212;
+  margin: 0;
+  padding: 0;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-.fade-in {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-in-out forwards;
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Navbar */
+.navbar {
+  margin-bottom: 20px;
 }
+.navbar-brand {
+  font-family: "Bree Serif", serif;
+  font-size: 22px;
+  color: #f19116 !important;
+}
+.nav-link {
+  color: #ffffff !important;
+  transition: color 0.3s ease-in-out;
+}
+.nav-link:hover {
+  color: #f19116 !important;
+}
+
+/* Home Section */
 .room {
-    text-align: center;
-    background-image: url("https://www.sobha.com/wp-content/uploads/2022/09/swimming-pool.webp");
-    height: 100vh;
-    background-size: contain;
-    background-color: #222222;
-
-    background-position: center; /* Centers the image */
-    background-repeat: no-repeat;
+  text-align: center;
+  background-image: url("https://www.sobha.com/wp-content/uploads/2022/09/swimming-pool.webp");
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
 }
 
 .card {
-    height: 40vh;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+  background: rgba(0,0,0,0.6);
+  padding: 20px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  margin-bottom: 40px;
 }
 
 .heading {
-    text-align: center;
-    color: #f19116;
-    font-family: "Bree Serif";
-    font-size: 25px;
-    font-weight: bold;
-    padding: 8px;
-    margin: 8px;
+  color: #f19116;
+  font-family: "Bree Serif", serif;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .paragraph {
-    text-align: center;
-    color: #6c6b70;
-    padding: 8px;
-    line-height: 1.6;
-    margin: 8px;
-    font-family: "Roboto";
-    font-size: 15px;
-
+  color: #e0e0e0;
+  font-size: 16px;
+  margin-bottom: 20px;
 }
 
+/* Buttons */
 .button {
-    text-align: center;
-    color: #ffffff;
-    background-color: #f19116;
-    /* padding: 8px; */
-    padding: 12px 20px;
-    border-radius: 8px;
-    margin: 8px;
-    width: 25vh;
+  display: inline-block;
+  color: #ffffff;
+  background-color: #f19116;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  font-weight: bold;
+  text-decoration: none;
 }
+
 .button:hover {
-    background-color: #e07a12;
-    transform: scale(1.05);
-    transition: 0.3s ease-in-out;
+  background-color: #e07a12;
+  transform: scale(1.05);
 }
+
 .button:active {
-    transform: scale(0.95);
-    transition: 0.1s ease-in-out;
+  transform: scale(0.95);
 }
 
+/* Apartments Section */
 .black {
-    background-color: #1e1e1e;
-    height: auto;
-    min-height: 100vh;
-    padding-bottom: 50px;
-}
-
-.embed-responsive {
-    max-width: 1000px; /* Adjust as needed */
-    margin:auto; /* Centers the frame */
+  background-color: #1e1e1e;
+  min-height: 100vh;
+  padding: 30px 15px;
 }
 
 .heading1 {
-
-    color: #f19116;
-    letter-spacing: 1px;
-    font-family: "Bree Serif";
-    font-size: 25px;
-    font-weight: bold;
-    padding: 8px;
-    margin: 8px;
+  color: #f19116;
+  font-family: "Bree Serif", serif;
+  font-size: 26px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .card1 {
-    background-color: #ffffff;
-    margin: 15px;
-    border-width: 0px;
-    border-radius: 10px;
-
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center;
-    text-align: center;
-    padding: 15px;
+  background-color: #ffffff;
+  margin: 20px auto;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 800px;
+  text-align: center;
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
+
 .card1:hover {
-    transform: scale(1.02);
-    transition: 0.3s ease-in-out;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
-.card1 {
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Smooth shadow */
-}
-
-
 
 .head {
-    text-align: center;
-    color: #0f0e46;
-    font-family: "Bree Serif";
-    font-size: 25px;
-    font-weight: bold;
-    padding: 10px;
-    margin: 10px;
-
+  color: #0f0e46;
+  font-family: "Bree Serif", serif;
+  font-size: 22px;
+  margin: 10px 0;
 }
 
 .image {
-    height: 45vh;
-    width: 45vh;
-    margin: 10px;
-    border-radius: 5px;
-}
-.image {
-    border-radius: 10px;
-    border: 2px solid #f19116; /* Orange accent */
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+  border: 2px solid #f19116;
+  margin-bottom: 15px;
 }
 
 .paragraph1 {
-    text-align: center;
-    line-height: 1.6;
-    /* color: #6c6b70; */
-    /* padding: 15px; */
-    margin: 15px;
-    font-family: "Roboto";
-    font-size: 20px;
-
-    background: rgba(243, 11, 11, 0.6); /* Dark overlay */
-    padding: 15px;
-    border-radius: 5px;
-    color: #000000;
-
-
+  font-size: 16px;
+  line-height: 1.6;
+  background: rgba(241, 145, 22, 0.1);
+  padding: 15px;
+  border-radius: 5px;
+  color: #333;
 }
 
+/* Booking Section */
 .title {
-    color: #e0b04f;
-    letter-spacing: 1px;
-    font-family: "Bree Serif";
-    font-size: 25px;
-    font-weight: bold;
-    padding: 8px;
-    margin: 8px;
+  color: #e0b04f;
+  font-family: "Bree Serif", serif;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 10px 0;
 }
-
 
 .para1 {
-
-    font-family: "Roboto";
-    color: #ffffff;
-    padding: 8px;
-    margin: 8px;
-
-    font-size: 20px;
+  color: #ffffff;
+  font-size: 18px;
+  margin-left: 10px;
 }
 
-.line {
-    color: #ffffff;
+.embed-responsive {
+  max-width: 900px;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* About Page */
+.about-section {
+  background-color: #1e1e1e;
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: #ffffff;
+}
+
+.about-section h1 {
+  color: #f19116;
+  font-family: "Bree Serif", serif;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.about-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.map-container {
+  max-width: 900px;
+  margin: 20px auto;
+  border-radius: 10px;
+  overflow: hidden;
 }
