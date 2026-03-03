@@ -109,5 +109,3 @@ git add README.md
 git commit -m "Added README.md with project overview"
 git push origin main
 ```
-
-That’ll make your repo look 🔥 on GitHub.  
