@@ -145,68 +145,88 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Enhanced Download Receipt Logic ---
-  if (downloadBtn) {
-    downloadBtn.addEventListener("click", () => {
-      if (!bookingData.flat) return;
+// --- Enhanced Download Receipt Logic ---
+if (downloadBtn) {
+  downloadBtn.addEventListener("click", () => {
+    // 1. Check if we have data to print
+    if (!bookingData || !bookingData.flat) {
+      console.error("No booking data found for PDF generation.");
+      alert("Please complete the booking form first!");
+      return;
+    }
 
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF();
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-      // 1. Header Styling
-      doc.setFillColor(24, 24, 24);
-      doc.rect(0, 0, 210, 40, "F");
-      
-      doc.setTextColor(241, 145, 22);
-      doc.setFontSize(22);
+    // 2. Header Styling (Onyx & Orange Theme)
+    doc.setFillColor(24, 24, 24); 
+    doc.rect(0, 0, 210, 40, "F");
+    
+    doc.setTextColor(241, 145, 22); 
+    doc.setFontSize(22);
+    doc.setFont("helvetica", "bold");
+    doc.text("SUNRISE AVENUE", 20, 25);
+    
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(10);
+    doc.setFont("helvetica", "normal");
+    doc.text("Premium Living. Redefined.", 20, 32);
+
+    // 3. Receipt Metadata
+    doc.setTextColor(40, 40, 40);
+    doc.setFontSize(12);
+    doc.text(`Receipt ID: #SR-${Math.floor(Math.random() * 100000)}`, 140, 55);
+    doc.text(`Issued: ${new Date().toLocaleDateString()}`, 140, 62);
+
+    doc.setDrawColor(241, 145, 22);
+    doc.line(20, 70, 190, 70); 
+
+    doc.setFont("helvetica", "bold");
+    doc.text("BOOKING DETAILS", 20, 80);
+    doc.setFont("helvetica", "normal");
+
+    const displayPrice = bookingData.price.replace(/[^\x00-\x7F]/g, "Rs. "); 
+    const displaySlot = bookingData.slot.replace(/[^\x00-\x7F]/g, "Rs. ");
+    
+    const details = [
+      ["Property Name:", bookingData.flat],
+      ["Price:", displayPrice],
+      ["Booking Slot:", displaySlot],
+      ["Customer Name:", bookingData.name],
+      ["Email:", bookingData.email],
+      ["Phone:", bookingData.phone],
+      ["Visit Date:", bookingData.date]
+    ];
+
+    // let yPos = 90;
+    // details.forEach(detail => {
+    //   doc.text(detail[0], 25, yPos);
+    //   doc.text(detail[1], 80, yPos);
+    //   yPos += 10;
+    // });
+
+    let yPos = 90;
+    details.forEach(detail => {
       doc.setFont("helvetica", "bold");
-      doc.text("SUNRISE AVENUE", 20, 25);
+      doc.text(detail[0], 25, yPos);
       
-      doc.setTextColor(255, 255, 255);
-      doc.setFontSize(10);
       doc.setFont("helvetica", "normal");
-      doc.text("Premium Living. Redefined.", 20, 32);
+      doc.text(detail[1], 80, yPos);
+      yPos += 10;
+    });
 
-      // 2. Receipt Info
-      doc.setTextColor(40, 40, 40);
-      doc.setFontSize(12);
-      doc.text(`Receipt ID: #SR-${Math.floor(Math.random() * 100000)}`, 140, 55);
-      doc.text(`Issued: ${new Date().toLocaleDateString()}`, 140, 62);
+    // 4. Image Loading with Error Handling
+    const img = new Image();
+    img.crossOrigin = "Anonymous"; 
+    img.src = bookingData.image;
 
-      // 3. Structured Data Section
-      doc.setDrawColor(241, 145, 22);
-      doc.line(20, 70, 190, 70);
-
-      doc.setFont("helvetica", "bold");
-      doc.text("BOOKING DETAILS", 20, 80);
-      doc.setFont("helvetica", "normal");
-      
-      const details = [
-        ["Property Name:", bookingData.flat],
-        ["Price:", bookingData.price],
-        ["Booking Slot:", bookingData.slot],
-        ["Customer Name:", bookingData.name],
-        ["Email:", bookingData.email],
-        ["Phone:", bookingData.phone],
-        ["Visit Date:", bookingData.date]
-      ];
-
-      let yPos = 90;
-      details.forEach(detail => {
-        doc.text(detail[0], 25, yPos);
-        doc.text(detail[1], 80, yPos);
-        yPos += 10;
-      });
-
-      // 4. Image & QR Handling
-      const img = new Image();
-      img.crossOrigin = "Anonymous";
-      img.src = bookingData.image;
-      img.onload = function () {
+    img.onload = function () {
+      try {
         doc.setDrawColor(200, 200, 200);
-        doc.rect(19, 164, 82, 62);
+        doc.rect(19, 164, 82, 62); 
         doc.addImage(img, "JPEG", 20, 165, 80, 60);
 
+        // QR Code Generation
         const qrContainer = document.createElement("div");
         new QRCode(qrContainer, {
           text: `VERIFIED: ${bookingData.name} - ${bookingData.flat}`,
@@ -214,6 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
           height: 128,
         });
 
+        // Small timeout to ensure QR canvas is rendered
         setTimeout(() => {
           const qrCanvas = qrContainer.querySelector("canvas");
           if (qrCanvas) {
@@ -224,14 +245,22 @@ document.addEventListener("DOMContentLoaded", () => {
           
           doc.setFontSize(10);
           doc.setTextColor(100, 100, 100);
-          doc.text("This is a computer-generated receipt for your property inquiry.", 105, 250, { align: "center" });
-          doc.text("Thank you for choosing Sunrise Avenue!", 105, 256, { align: "center" });
-          
+          doc.text("This is a computer-generated receipt.", 105, 250, { align: "center" });
           doc.save(`Receipt_Sunrise_${bookingData.flat.replace(/\s+/g, '_')}.pdf`);
-        }, 150);
-      };
-    });
-  }
+        }, 200);
+      } catch (err) {
+        console.error("PDF Image processing failed:", err);
+        // Save PDF anyway even if image fails
+        doc.save(`Receipt_Sunrise_${bookingData.flat.replace(/\s+/g, '_')}.pdf`);
+      }
+    };
+
+    img.onerror = function() {
+      console.warn("Could not load property image for PDF. Generating without image.");
+      doc.save(`Receipt_Sunrise_${bookingData.flat.replace(/\s+/g, '_')}.pdf`);
+    };
+  });
+}
 
   // --- Apartment Filters & Scroll Animations ---
   const searchBar = document.getElementById("searchBar");
